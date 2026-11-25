@@ -44,6 +44,7 @@ estructura/
 
 - Python 3.10 o superior
 - pandas y openpyxl
+- En la terminal de su VS Code que instale: pip install pandas openpyxl
 
 ```
 pip install pandas openpyxl
