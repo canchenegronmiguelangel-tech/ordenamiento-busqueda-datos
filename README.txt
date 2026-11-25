@@ -1,6 +1,3 @@
-# Sistema de Procesamiento y Ordenamiento Masivo de Datos
-
-
 ## Descripción
 
 Aplicación con interfaz gráfica (tkinter) que carga archivos de números enteros
@@ -15,6 +12,9 @@ No se usa `.sort()`, `sorted()` ni librerías automáticas de ordenamiento.
 ```
 estructura/
 ├── main.py                      # Interfaz gráfica; conecta botones con las librerías
+├── requirements.txt             # Dependencias (pandas, openpyxl)
+├── ejecutar.bat                 # Instala dependencias y abre el programa (Windows)
+├── README.md
 ├── libs/
 │   ├── __init__.py
 │   ├── archivos.py              # Lectura TXT/XLSX y exportación
@@ -27,37 +27,42 @@ estructura/
 │   ├── lib_radixsort.py         # Ordenamiento interno
 │   ├── lib_mezcladirecta.py     # Ordenamiento externo (archivos auxiliares)
 │   ├── lib_mezclaequilibrada.py # Ordenamiento externo (archivos auxiliares)
-│   ├── lib_intercalacion.py     # Intercalación de dos secuencias ordenadas
+│   ├── lib_intercalacion.py     # Ordenamiento externo: intercalación de 2 secuencias ordenadas
 │   ├── lib_busquedasecuencial.py
 │   ├── lib_busquedabinaria.py
 │   └── lib_busquedahash.py
 ├── datos/                       # Archivos de prueba (1000 TXT y 5000 XLSX)
-├── salida/                      # Resultados exportados
-└── README.md
+└── salida/                      # Resultados exportados (se crea sola)
 ```
 
 ## Requisitos
 
 - Python 3.10 o superior
-- pandas y openpyxl
-- En la terminal de su VS Code que instale: pip install pandas openpyxl
-
-```
-pip install pandas openpyxl
-```
+- pandas y openpyxl (se listan en `requirements.txt`)
 
 ## Cómo ejecutarlo
 
+### Opción 1: Windows, con doble clic
+Haz doble clic en `ejecutar.bat`. Instala las dependencias si faltan y abre el
+programa. Necesita internet la primera vez.
+
+### Opción 2: desde la terminal
 1. Clona el repositorio:
    ```
    git clone [URL del repositorio]
    cd [carpeta del repositorio]
    ```
-2. Instala las dependencias (ver arriba).
+2. Instala las dependencias:
+   ```
+   pip install -r requirements.txt
+   ```
 3. Ejecuta desde la carpeta raíz del proyecto:
    ```
    python main.py
    ```
+
+Si pandas no está instalado, el programa abre igual: el TXT funciona y al
+cargar un XLSX aparece un aviso con lo que hay que instalar.
 
 ## Uso
 
@@ -85,8 +90,13 @@ pip install pandas openpyxl
 | Tipo | Algoritmos |
 |---|---|
 | Ordenamiento interno | Burbuja, Inserción, Selección, ShellSort, QuickSort, HeapSort, Radix Sort |
-| Ordenamiento externo | Mezcla Directa, Mezcla Equilibrada Natural |
+| Ordenamiento externo | Mezcla Directa, Mezcla Equilibrada Natural, Intercalación (2 vías) |
 | Búsqueda | Secuencial, Binaria, Hash (encadenamiento) |
+
+**Nota sobre Intercalación:** mezcla dos archivos o listas que ya están
+ordenados en una sola secuencia ordenada, en una pasada. No recibe una lista
+desordenada, por lo que no aparece en el menú de ordenar. Es la operación base
+que Mezcla Directa y Mezcla Equilibrada repiten para ordenar un archivo.
 
 ## Comparación básica
 
@@ -126,6 +136,8 @@ Tiempos medidos con el programa (reemplaza con los tuyos):
   se corrigió a `from libs import lib_busquedabinaria`.
 - **Carpeta de exportación:** `salida/` se creaba según la carpeta de la
   terminal. Ahora se calcula desde la ubicación de `archivos.py`.
+- **Falta de pandas en otra computadora:** se agregó `requirements.txt`,
+  `ejecutar.bat` y un aviso claro al cargar un XLSX sin pandas instalado.
 
 ## Limitaciones
 
@@ -133,3 +145,6 @@ Tiempos medidos con el programa (reemplaza con los tuyos):
   ventana se congela mientras trabajan.
 - Las búsquedas son de valor exacto.
 - Las mezclas externas usan archivos temporales (`tempfile`).
+- La intercalación está disponible como librería, pero no tiene botón en la
+  interfaz.
+
