@@ -1,9 +1,5 @@
 # Sistema de Procesamiento y Ordenamiento Masivo de Datos
 
-**Alumno:** [Nombre completo]
-**Matrícula:** [Matrícula]
-**Materia:** Algoritmos de Ordenamiento y Búsqueda
-**Fecha:** [Fecha de entrega]
 
 ## Descripción
 
